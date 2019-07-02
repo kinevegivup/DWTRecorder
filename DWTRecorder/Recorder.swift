@@ -44,10 +44,6 @@ class Recorder: NSObject {
         guard let strongSelf = self else { return }
         strongSelf.delegate?.recorder(strongSelf, didRecordAt: event)
     }) : nil
-    
-    deinit {
-        timer?.stop()
-    }
 
     // Template methods.
     func prepareToRecord() {}

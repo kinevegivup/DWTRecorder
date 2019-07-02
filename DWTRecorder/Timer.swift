@@ -13,17 +13,18 @@ typealias TimerCallback = (_ event: Timer.TimeEvent) -> Void
 class Timer: NSObject {
     
     struct TimeEvent {
+        
         var number: Int = 0
         var interval: TimeInterval = 0
         
-        var timerStartTime: TimeInterval = 0
-        var timerEndTime: TimeInterval = 0
+        var beginTime: TimeInterval = 0
+        var endTime: TimeInterval = 0
         
         var thisTimeStartTime: TimeInterval = 0
         var thisTimeEndTime: TimeInterval = 0
         
         var intervalOfThisTime: TimeInterval { return thisTimeEndTime - thisTimeStartTime }
-        var intervalOfTimerStarting: TimeInterval { return timerStartTime - timerEndTime }
+        var intervalOfTimerStarting: TimeInterval { return endTime - beginTime }
         var timeConsuming: TimeInterval { return Double(number) * interval }
     }
     
@@ -53,7 +54,7 @@ class Timer: NSObject {
         thisTimeStartTime = startTime
         self.interval = interval
         
-        self.timeEvent.timerStartTime = startTime
+        self.timeEvent.beginTime = startTime
         self.timeEvent.interval = interval
         
         timer = DispatchSource.makeTimerSource(flags: [], queue: queue)
@@ -67,9 +68,7 @@ class Timer: NSObject {
     
     func stop() {
         
-        guard timer?.isCancelled == false else {
-            return
-        }
+        guard timer?.isCancelled == false else { return }
         
         timer?.cancel()
         
@@ -77,13 +76,12 @@ class Timer: NSObject {
         startTime = 0
     }
     
-    
     private func fillTimeEvent() {
         count += 1
         timeEvent.number = count
         timeEvent.thisTimeStartTime = thisTimeStartTime
         
         thisTimeStartTime = TimeInterval(DispatchTime.now().rawValue)
-        timeEvent.timerEndTime = thisTimeStartTime
+        timeEvent.endTime = thisTimeStartTime
     }
 }

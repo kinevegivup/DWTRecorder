@@ -34,12 +34,6 @@ class AudioRecordingAndPlayingViewController: UIViewController {
     var timer: Timer?
     var duration: TimeInterval = 0
     
-    deinit {
-        recorder?.stop()
-        player?.stop()
-        stopTimer()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,6 +42,14 @@ class AudioRecordingAndPlayingViewController: UIViewController {
         
         recorder?.delegate = self
         recorder?.isTimerEnabled = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        stopTimer()
+        recorder?.stop()
+        player?.stop()
     }
     
     func setButton(_ button: UIButton) {
