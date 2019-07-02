@@ -34,6 +34,12 @@ class AudioRecordingAndPlayingViewController: UIViewController {
     var timer: Timer?
     var duration: TimeInterval = 0
     
+    deinit {
+        recorder?.stop()
+        player?.stop()
+        stopTimer()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,6 +73,7 @@ extension AudioRecordingAndPlayingViewController {
             recorder?.timer?.start(interval: 1.0)
             
             playingButton.isEnabled = false
+            playingButton.isSelected = false
             moveWithAnimation(offset: movingSpace)
         } else {
             
