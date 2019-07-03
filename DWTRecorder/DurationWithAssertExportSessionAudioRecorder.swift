@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-class DurationByAssertSessionAudioRecorder: NativeWrappedAudioRecorder {
+class DurationWithAssertExportSessionAudioRecorder: NativeWrappedAudioRecorder {
     
     var duration: TimeInterval = 0
     var presetName: String!
@@ -61,7 +61,7 @@ class DurationByAssertSessionAudioRecorder: NativeWrappedAudioRecorder {
 }
 
 
-extension DurationByAssertSessionAudioRecorder {
+extension DurationWithAssertExportSessionAudioRecorder {
     override func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         cutAudioForDuration()
     }

@@ -15,7 +15,7 @@ class AudioQueueDurationAudioRecorderFactory: BaseRecorderFactory {
         let duration = (parametes as? TimeInterval) ?? 5.0
         
         let format = AudioRecorder.AudioStreamDescription.PCMFormat
-        let recorder = DurationByDataProviderAudioRecorder(duration: duration, audioFormat: format)
+        let recorder = DurationWithDataProviderAudioRecorder(duration: duration, audioFormat: format)
         
         let privider = AudioQueueDataProvider(audioFormat: format)
         recorder.dataProvider = privider

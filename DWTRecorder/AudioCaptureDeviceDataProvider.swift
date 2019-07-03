@@ -76,7 +76,7 @@ extension AudioCaptureDeviceDataProvider: AVCaptureAudioDataOutputSampleBufferDe
             let buffer = UnsafeMutableRawPointer.allocate(byteCount: length, alignment: 1)
             CMBlockBufferCopyDataBytes(blockBufferRef, atOffset: 0, dataLength: length, destination: buffer)
             let data = Data(bytes: buffer, count: length)
-            delegate?.recordingDataProvider(self, didProvide: data, extra: asbd?.pointee)
+            delegate?.mediaDataProviderDelegate(self, didProvide: data, extra: asbd?.pointee)
         }
     }
 }

@@ -14,7 +14,7 @@ class CaptureDeviceDurationAudioRecorderFactory: BaseRecorderFactory {
         let duration = (parameters as? TimeInterval) ?? 5.0
         
         let format = AudioRecorder.AudioStreamDescription.PCMFormat
-        let recorder = DurationByDataProviderAudioRecorder(duration: duration, audioFormat: format)
+        let recorder = DurationWithDataProviderAudioRecorder(duration: duration, audioFormat: format)
         
         let privider = AudioCaptureDeviceDataProvider()
         recorder.dataProvider = privider

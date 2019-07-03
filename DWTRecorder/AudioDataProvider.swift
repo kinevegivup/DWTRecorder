@@ -8,6 +8,6 @@
 
 import Foundation
 
-class AudioDataProvider: RecordingDataProvider {
+class AudioDataProvider: MediaDataProvider {
     
 }

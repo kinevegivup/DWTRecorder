@@ -145,7 +145,7 @@ extension AudioQueueDataProvider {
         guard isWorking else { return }
         
         let data = Data(bytes: pointer, count: size)
-        delegate?.recordingDataProvider(self, didProvide: data, extra: nil)
+        delegate?.mediaDataProviderDelegate(self, didProvide: data, extra: nil)
     }
 }
 

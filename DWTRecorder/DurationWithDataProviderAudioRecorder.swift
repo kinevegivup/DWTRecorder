@@ -9,9 +9,9 @@
 import Foundation
 import AVFoundation
 
-class DurationByDataProviderAudioRecorder: AudioRecorder {
+class DurationWithDataProviderAudioRecorder: AudioRecorder {
     
-    var dataProvider: RecordingDataProvider?
+    var dataProvider: MediaDataProvider?
     
     // Audio parameters.
     private var bytesLimited = 0
@@ -85,8 +85,8 @@ class DurationByDataProviderAudioRecorder: AudioRecorder {
     }
 }
 
-extension DurationByDataProviderAudioRecorder: RecordingDataProviderDelegate {
-    func recordingDataProvider(_ provider: RecordingDataProvider, didProvide data: Data, extra: Any?) {
+extension DurationWithDataProviderAudioRecorder: MediaDataProviderDelegate {
+    func mediaDataProviderDelegate(_ provider: MediaDataProvider, didProvide data: Data, extra: Any?) {
         dataContainer.append(data)
         
         if extra != nil && audioFormat == nil, let af = extra as? AudioStreamBasicDescription {

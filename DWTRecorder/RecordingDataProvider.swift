@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol RecordingDataProviderDelegate: class {
-    func recordingDataProvider(_ provider: RecordingDataProvider, didProvide data: Data, extra: Any?)
+protocol MediaDataProviderDelegate: class {
+    func mediaDataProviderDelegate(_ provider: MediaDataProvider, didProvide data: Data, extra: Any?)
 }
 
-class RecordingDataProvider: NSObject {
+class MediaDataProvider: NSObject {
     
-    weak var delegate: RecordingDataProviderDelegate?
+    weak var delegate: MediaDataProviderDelegate?
     var isWorking = false
     
     func start() {
